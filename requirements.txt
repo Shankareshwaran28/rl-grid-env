@@ -1,2 +1,2 @@
-openenv-core
 gradio
+matplotlib
