@@ -1,2 +1,4 @@
-gradio
-matplotlib
+gradio==3.48.1
+matplotlib==3.8.0
+numpy
+gym

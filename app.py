@@ -1,6 +1,6 @@
 import gradio as gr
 import matplotlib.pyplot as plt
-from run import evaluate_env
+from run import evaluate_env  # Make sure run.py exists at root or src/
 
 # 🎨 Custom Fonts + UI Styling
 custom_css = """
@@ -61,7 +61,6 @@ def render_grid(grid):
         for cell in row:
             color = "#1e293b"
             icon = ""
-
             if cell == "A":
                 color = "#22c55e"
                 icon = agent_icon
@@ -78,13 +77,10 @@ def render_grid(grid):
                         background:{color};
                         border-radius:14px;
                         box-shadow:0 6px 15px rgba(0,0,0,0.4);
-                        transition:0.2s;'>
-                        {icon}
-            </div>
+                        transition:0.2s;'>{icon}</div>
             """
     html += "</div>"
     return html
-
 
 # 📊 Chart
 def create_chart(score):
@@ -94,20 +90,16 @@ def create_chart(score):
     ax.set_ylabel("Value")
     return fig
 
-
 # 🧠 Main logic
 def run_game(level):
     result, grid = evaluate_env(level)
-
     result_text = f"""
 🎯 Success Rate: {result['success_rate']}
 📊 Avg Steps: {result['avg_steps']}
 🏆 Best Path: {result['best_path']}
 ⭐ Final Score: {result['final_score']}
 """
-
     return result_text, render_grid(grid), create_chart(result["final_score"])
-
 
 # 🎨 UI DESIGN
 with gr.Blocks(css=custom_css) as iface:
@@ -140,7 +132,6 @@ with gr.Blocks(css=custom_css) as iface:
         inputs=level,
         outputs=[result_box, grid_display, chart_display]
     )
-
 
 # 🚀 Launch
 iface.launch()
