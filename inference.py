@@ -1,6 +1,4 @@
-# inference.py
-def run():
-    print("RL Grid Environment running!")
+from app import iface  # your app.py contains the Gradio app
 
-if __name__ == "__main__":
-    run()
+# launch the Gradio interface
+iface.launch()
