@@ -1,0 +1,27 @@
+level,output,timestamp
+easy,"'
+🏆 RESULT
+
+Level: EASY
+
+Success Rate: 0.16
+Average Steps: 5.98
+Best Path: 6
+Final Score: 15.77
+
+📈 Learning Progress (every 50 episodes):
+[0.06, 0.12, 0.11333333333333333, 0.125, 0.144, 0.15333333333333332, 0.16, 0.1525, 0.1622222222222222, 0.164]
+",2026-04-01 23:59:46.088903
+medium,"'
+🏆 RESULT
+
+Level: MEDIUM
+
+Success Rate: 0.27
+Average Steps: 12.63
+Best Path: 10
+Final Score: 21.77
+
+📈 Learning Progress (every 50 episodes):
+[0.12, 0.11, 0.15333333333333332, 0.17, 0.184, 0.19, 0.22285714285714286, 0.2425, 0.2577777777777778, 0.272]
+",2026-04-02 00:01:40.459236

@@ -1,0 +1,3 @@
+name: grid-treasure-env
+description: Smart RL environment with Q-learning and grading
+entry_point: run.py
