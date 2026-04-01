@@ -1,3 +1,4 @@
+# run.py
 import random
 
 def generate_grid(size):
@@ -13,7 +14,6 @@ def generate_grid(size):
             grid[x][y] = "X"   # Obstacle
 
     return grid
-
 
 def evaluate_env(level):
     if level == "easy":
