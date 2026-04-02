@@ -49,3 +49,44 @@ class GridEnv:
         grid[self.goal_pos[0]][self.goal_pos[1]] = "G"
         grid[self.agent_pos[0]][self.agent_pos[1]] = "A"
         return grid
+
+
+def evaluate_env(level="easy", episodes=20):
+    env = GridEnv(level=level)
+    success_count = 0
+    total_steps = 0
+    best_steps = None
+    best_path = []
+
+    for _ in range(episodes):
+        obs = env.reset()
+        done = False
+        steps = 0
+        path = [env.agent_pos.copy()]
+
+        while not done:
+            action = random.choice([0, 1, 2, 3])
+            obs, reward, done, info = env.step(action)
+            steps += 1
+            path.append(env.agent_pos.copy())
+
+            if done:
+                if info.get("result") == "success":
+                    success_count += 1
+                    if best_steps is None or steps < best_steps:
+                        best_steps = steps
+                        best_path = path.copy()
+                total_steps += steps
+                break
+
+    avg_steps = total_steps / episodes if episodes > 0 else 0
+    success_rate = success_count / episodes if episodes > 0 else 0
+    final_score = success_rate * 100 - (avg_steps * 0.5)
+    final_score = max(final_score, 0)
+
+    return {
+        "success_rate": f"{success_rate*100:.1f}%",
+        "avg_steps": f"{avg_steps:.1f}",
+        "best_path": str(best_path),
+        "final_score": round(final_score, 2)
+    }, env.get_grid()
