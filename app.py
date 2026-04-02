@@ -1,8 +1,7 @@
 import gradio as gr
 import matplotlib.pyplot as plt
-from run import evaluate_env  # Make sure run.py exists at root or src/
+from run import evaluate_env
 
-# 🎨 Custom Fonts + UI Styling
 custom_css = """
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Inter:wght@400;500&display=swap');
 
@@ -11,14 +10,10 @@ body {
     background: #0f172a;
     color: white;
 }
-
-/* Headings */
 h1, h2, h3 {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
 }
-
-/* Buttons */
 .gr-button {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
@@ -26,21 +21,16 @@ h1, h2, h3 {
     background: linear-gradient(90deg, #22c55e, #3b82f6) !important;
     color: white !important;
 }
-
-/* Textbox */
 textarea, .gr-textbox {
     border-radius: 12px !important;
     background-color: #1e293b !important;
     color: white !important;
 }
-
-/* Dropdown */
 .gr-dropdown {
     border-radius: 12px !important;
 }
 """
 
-# 🎮 Grid → HTML (Hero Icons)
 def render_grid(grid):
     cols = len(grid[0])
     html = f"<div style='display:grid;grid-template-columns:repeat({cols},60px);gap:10px;justify-content:center;'>"
@@ -82,7 +72,6 @@ def render_grid(grid):
     html += "</div>"
     return html
 
-# 📊 Chart
 def create_chart(score):
     fig, ax = plt.subplots()
     ax.bar(["Score"], [score])
@@ -90,7 +79,6 @@ def create_chart(score):
     ax.set_ylabel("Value")
     return fig
 
-# 🧠 Main logic
 def run_game(level):
     result, grid = evaluate_env(level)
     result_text = f"""
@@ -101,7 +89,6 @@ def run_game(level):
 """
     return result_text, render_grid(grid), create_chart(result["final_score"])
 
-# 🎨 UI DESIGN
 with gr.Blocks(css=custom_css) as iface:
 
     gr.Markdown("""
@@ -133,5 +120,4 @@ with gr.Blocks(css=custom_css) as iface:
         outputs=[result_box, grid_display, chart_display]
     )
 
-# 🚀 Launch
-iface.launch()
+# ❌ REMOVED iface.launch() from here — inference.py handles it

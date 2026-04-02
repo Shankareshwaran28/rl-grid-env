@@ -1,12 +1,15 @@
-from app import iface  # your app.py contains the Gradio app
+from app import iface
 from fastapi.responses import JSONResponse
 
-# Add /reset endpoint
+# ✅ Must call queue() or load app BEFORE accessing .app
+iface.queue()
+
+# ✅ Add /reset POST endpoint
 app = iface.app
 
 @app.post("/reset")
 async def reset():
     return JSONResponse({"status": "ok"})
 
-# launch the Gradio interface
+# ✅ Single launch point
 iface.launch(server_name="0.0.0.0", server_port=7860)
